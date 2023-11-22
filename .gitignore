@@ -36,3 +36,7 @@ share/
 
 # local sqlite database
 db.sqlite
+
+# IDE
+.vscode
+.idea
