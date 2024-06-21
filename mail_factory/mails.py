@@ -150,6 +150,7 @@ class BaseMail(object):
         message = self.create_email_msg(emails, attachments=attachments,
                                         from_email=from_email, headers=headers)
         message.send()
+        return message
 
     def mail_admins(self, attachments=None, from_email=None):
         """Send email to admins."""

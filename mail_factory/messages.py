@@ -8,11 +8,12 @@ except ImportError:
     from email.mime.base import MIMEBase  # python3
 
 from django.conf import settings
-from django.core.mail import EmailMultiAlternatives, SafeMIMEMultipart
+from anymail.message import AnymailMessage
+from django.core.mail import SafeMIMEMultipart
 
 
 # http://djangosnippets.org/snippets/2215/
-class EmailMultiRelated(EmailMultiAlternatives):
+class EmailMultiRelated(AnymailMessage):
     """
     A version of EmailMessage that makes it easy to send multipart/related
     messages. For example, including text and HTML versions with inline images.
