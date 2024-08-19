@@ -100,7 +100,7 @@ class BaseMail(object):
 
     def create_email_msg(self, emails, attachments=None, from_email=None,
                          lang=None, message_class=EmailMultiRelated,
-                         headers=None):
+                         headers=None, **kwargs):
         """Create an email message instance."""
 
         from_email = from_email or settings.DEFAULT_FROM_EMAIL
@@ -130,7 +130,7 @@ class BaseMail(object):
                                            "SUPPORT_EMAIL",
                                            settings.DEFAULT_FROM_EMAIL)}
 
-        msg = message_class(subject, body, from_email, emails, headers=headers)
+        msg = message_class(subject, body, from_email, emails, headers=headers, **kwargs)
         if html_content:
             msg.attach_alternative(html_content, 'text/html')
 
@@ -145,10 +145,10 @@ class BaseMail(object):
                         msg.attach(filename, attachment.read(), mimetype)
         return msg
 
-    def send(self, emails, attachments=None, from_email=None, headers=None):
+    def send(self, emails, attachments=None, from_email=None, headers=None, **kwargs):
         """Create the message and send it to emails."""
         message = self.create_email_msg(emails, attachments=attachments,
-                                        from_email=from_email, headers=headers)
+                                        from_email=from_email, headers=headers, **kwargs)
         message.send()
         return message
 
