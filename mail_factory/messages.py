@@ -9,7 +9,7 @@ except ImportError:
 
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives, SafeMIMEMultipart
-from django.core.mail.messages import EmailAlternative
+from django.core.mail.message import EmailAlternative
 
 
 # http://djangosnippets.org/snippets/2215/
