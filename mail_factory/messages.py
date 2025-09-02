@@ -9,6 +9,7 @@ except ImportError:
 
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives, SafeMIMEMultipart
+from django.core.mail.messages import EmailAlternative
 
 
 # http://djangosnippets.org/snippets/2215/
@@ -59,7 +60,7 @@ class EmailMultiRelated(EmailMultiAlternatives):
                 for filename, _, _ in self.related_attachments:
                     content = re.sub(r'(?<!cid:)%s' % re.escape(filename),
                                      'cid:%s' % filename, content)
-                self.alternatives[i] = (content, mimetype)
+                self.alternatives[i] = EmailAlternative(content, mimetype)
 
         return super(EmailMultiRelated, self)._create_alternatives(msg)
 
